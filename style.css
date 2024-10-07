@@ -145,6 +145,7 @@ header{
     }
     #searchQuery{
         width: 100%;
+        padding: 0 13px;
     }
     #donation-modal{
         z-index: 1000000;
