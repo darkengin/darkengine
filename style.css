@@ -85,7 +85,7 @@ header{
     .future{
         position: relative;
         top: 18rem;
-        height: 50vh;
+        height: 55vh;
         width: 100%;
         display: flex;
         flex-direction: column;
