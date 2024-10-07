@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="style.css">
+<link rel="shortcut icon" href="assets/logo.jpg" type="image/x-icon">
+<title>DarkEngine</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PGW81JRTK5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PGW81JRTK5');
+</script>
+</head>
+<body>
+    <header class="h-[80px] w-[100%] bg-gray-900 fixed">
+        <nav class="flex items-center justify-between px-10 py-2">
+            <img class="h-16 w-16 rounded-[400px] object-cover" src="assets/logo.jpg" alt="Logo">
+            <ul class="flex gap-10 text-[20px] font-bold text-[#fff]" id="main">
+                <li class="flex items-center justify-center gap-3">
+                    <a href="#" onclick="toggleModal()">Donate Us <i class="fa-solid fa-hand-holding-dollar"></i></a>
+                </li>
+            </ul>
+            <i class="fa-solid fa-bars text-[20px]" id="icon"></i>
+        </nav>
+    </header>
+
+    <div id="donation-modal" class="hidden fixed top-30 right-0 w-[100%] inset-0 bg-gray-800 bg-opacity-75 flex items-center justiy-center z-10">
+        <div class="bg-[#001] p-6 rounded-lg shadow-lg" id="donat">
+            <h2 class="text-xl font-bold mb-4 text-white">Support Us width Bitcoin</h2>
+            <p class="mb-2 text-white" id="adre">BTC Address: <span class="font-mono text-gray-400">bc1qfgy996hpxl2zcggnd6q47y3s7akdmftwdjaz8e</span></p>
+            <img src="assets/Btc.png" alt="Scan to Donate" class="w-50 h-50 mx-auto mb-4">
+            <button class="bg-gray-900 text-white px-4 py-2 rounded-lg" onclick="toggleModal()">Close</button>
+        </div>
+    </div>
+
+    <div class="center">
+        <form id="searchEngine">
+            <div class="bg-white flex px-1 py-1 rounded-full border border-blue-500 overflow-hidden max-w-md mx-auto font-[sans-serif]">
+                <input class="w-[20rem] outline-none bg-white pl-4 text-sm" type="text" id="searchQuery" placeholder="Search anything on internet">
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 transition-all text-white text-sm rounded-full px-5 py-2.5">Search</button>
+            </div>
+        </form>
+        <div id="searchResults" class="text-white mt-5 w-[80%]"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
