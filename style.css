@@ -41,7 +41,7 @@ header{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: blue;
+    color: #08C2FF;
 }
 .lidis{
     display: flex;
