@@ -3,13 +3,46 @@
     padding: 0;
     box-sizing: border-box;
 }
+:root{
+    --background-main: #fefefe;
+    --background-secondary: #cccccc;
+    --color-main: #333333;
+    --color-secondary: #555555;
+}
+
+.btn{
+    width: 36px;
+    padding: 6px 12px;
+    margin-left: 20px;
+    cursor: pointer;
+    color: var(--color-main);
+    background: var(--background-main);
+    border: 1px solid var(--background-secondary);
+    border-radius: 6px;
+    font-size: 14px;
+}
+.dark{
+    --background-main: #030303;
+    --background-secondary: #000000;
+    --color-main: #fefefe;
+    --color-secondary: #cccccc;
+}
+@media (prefers-color-scheme: dark) {
+    .system{
+        --background-main: #333333;
+        --background-secondary: #555555;
+        --color-main: #fefefe;
+        --color-secondary: #cccccc;
+    }
+}
+  
 header{
     z-index: 10000;
 }
 .center{
     height: auto;
     width: 100%;
-    background: #000000;
+    background: var(--background-main);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,9 +54,10 @@ header{
     display: none;
 }
 .future{
+    color: var(--color-main);
     position: relative;
-    top: 24rem;
-    height: 50vh;
+    top: 16rem;
+    height: 47vh;
     width: 60%;
     display: flex;
     flex-direction: column;
@@ -41,7 +75,7 @@ header{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: #08C2FF;
+    color: #4d4dd1;
 }
 .lidis{
     display: flex;
@@ -58,7 +92,7 @@ header{
         position: absolute;
         right: 30rem;
         top: 80px;
-        font-size: 30px;
+        font-size: 26px;
         height: 100vh;
         width: 100%;
         padding: 100px 100px;
@@ -70,6 +104,16 @@ header{
         right: 0;
         transition: all 0.4s ease-in000000000;
     }
+    .navbar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn{
+        width: 50px;
+        font-size: 17px;
+    }
+
     #icon{
         font-size: 30px;
         display: flex;
@@ -77,6 +121,7 @@ header{
         color: #fff;
     }
     .center{
+        width: 100%;
         padding: 0 0 30rem 0;
     }
     #icon{
@@ -85,8 +130,11 @@ header{
     .future{
         position: relative;
         top: 18rem;
-        height: 55vh;
+        height: auto;
         width: 100%;
+        background: var(--background-main);
+        border: 1px solid #50505049;
+        padding: 1px 2px 2px 10px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -109,5 +157,16 @@ header{
         display: flex;
         flex-direction: column;
         width: 100%;
+    }
+    .ancrp {
+        max-width: 260px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #4d4dd1;
+    }
+    #ima{
+        width: 100%;
+        height: 150px;
     }
 }

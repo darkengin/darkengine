@@ -8,6 +8,7 @@
 <meta name="google-adsense-account" content="ca-pub-2681103030876233">
 <link rel="stylesheet" href="assets/css/style.css">
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="style.css">
 <link rel="shortcut icon" href="assets/logo.jpg" type="image/x-icon">
@@ -28,13 +29,18 @@
 </script>
 </head>
 <body>
-    <header class="h-[80px] w-[100%] bg-gray-900 fixed">
+    <header class="h-[80px] w-[100%] bg-gray-900 fixed" id="head">
         <nav class="flex items-center justify-between px-10 py-2">
             <img class="h-16 w-16 rounded-[400px] object-cover" src="assets/logo.jpg" alt="Logo">
             <ul class="flex gap-10 text-[20px] font-bold text-[#fff]" id="main">
                 <li class="flex items-center justify-center gap-3">
                     <a href="#" onclick="toggleModal()">Donate Us <i class="fa-solid fa-hand-holding-dollar"></i></a>
                 </li>
+                <div class="navbar">
+                    <button class="btn" id="system-button"><i class="fa-brands fa-windows"></i></button>
+                    <button class="btn" id="light-button"><i class="fa-regular fa-sun"></i></button>
+                    <button class="btn" id="dark-button"><i class="fa-solid fa-moon"></i></button>
+                </div>
             </ul>
             <i class="fa-solid fa-bars text-[20px]" id="icon"></i>
         </nav>

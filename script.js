@@ -1,15 +1,44 @@
 const nav = document.querySelector('#main');
 const iconma = document.querySelector('#icon');
+const body = document.body
+const system = document.getElementById('system-button')
+const light = document.getElementById('light-button')
+const dark = document.getElementById('dark-button')
 
 iconma.addEventListener('click', function() {
     nav.classList.toggle('active')
 });
 
+
+
+system.addEventListener('click', () => setTheme('system'))
+light.addEventListener('click', () => setTheme('light'))
+dark.addEventListener('click', () => setTheme('dark'))
+
+const availableThemes = ['system', 'light', 'dark']
+
+function setTheme(themeToSet){
+    if(!availableThemes.includes(themeToSet)) return
+    window.localStorage.setItem('theme', themeToSet)
+    availableThemes.forEach((theme) => {
+        if(theme !== themeToSet && body.classList.contains(theme)) body.classList.remove(theme)
+    })
+    if(!body.classList.contains(themeToSet)) body.classList.add(themeToSet)
+}
+
+function loadTheme() {
+    const theme = window.localStorage.getItem('theme')
+    setTheme(theme)
+}
+loadTheme()
+
+
+
+
 function toggleModal() {
     const modal = document.getElementById('donation-modal');
     modal.classList.toggle('hidden')
 }
-
 
 const apiKey = 'AIzaSyCOhhJp4IxGziv2NSuVnkg8HdJlltEvM9g';
 const searchEngineId = '729c805d075334c18';
@@ -188,7 +217,7 @@ function displayResults(results) {
             <div className="content">
                 <div class='future'>
                 <div className="im">
-                ${logoUrl ? `<img src="${logoUrl}" alt="Website logo" class='h-[100px] w-[100px] object-cover rounded-[200px] mb-4' />` : ''}
+                ${logoUrl ? `<img src="${logoUrl}" id='ima' alt="Website logo" class='h-[100px] w-[150px] object-cover mb-4' />` : ''}
                 </div>
                     <h3 class='text-xl font-bold'>${title} - <span class="text-sm">${classification}</span></h3>
                     <a href='${link}' class='ancrp' rel="noopener noreferrer">${link}</a>
