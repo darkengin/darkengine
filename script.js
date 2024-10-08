@@ -5,6 +5,7 @@ const system = document.getElementById('system-button')
 const light = document.getElementById('light-button')
 const dark = document.getElementById('dark-button')
 
+
 iconma.addEventListener('click', function() {
     nav.classList.toggle('active')
 });
@@ -31,6 +32,7 @@ function loadTheme() {
     setTheme(theme)
 }
 loadTheme()
+
 
 
 
@@ -217,15 +219,18 @@ function displayResults(results) {
             <div className="content">
                 <div class='future'>
                 <div className="im">
-                ${logoUrl ? `<img src="${logoUrl}" id='ima' alt="Website logo" class='h-[100px] w-[150px] object-cover mb-4' />` : ''}
+                ${logoUrl ? 
+                    `<img src="${logoUrl}" id='ima' alt="Website logo" class='h-[100px] w-[150px] object-cover mb-4'
+                    onerror="this.onerror=null;this.src='/path/to/placeholder.png';" />` : ''
+                }
                 </div>
                     <h3 class='text-xl font-bold'>${title} - <span class="text-sm">${classification}</span></h3>
                     <a href='${link}' class='ancrp' rel="noopener noreferrer">${link}</a>
                     <p>${snippet}</p> <!-- Description here -->
                     <p>Likes: ${likes} | Dislikes: ${dislikes}</p> <!-- Show like and dislike counts -->
                     <div class="lidis">
-                    <button onclick="collectFeedback('${link}', 'like')">👍</button>
-                    <button onclick="collectFeedback('${link}', 'dislike')">👎</button>
+                    <button class='icon' onclick="collectFeedback('${link}', 'like')"><i class="fa-regular fa-thumbs-up unselectable"></i></button>
+                    <button class='icon' onclick="collectFeedback('${link}', 'dislike')"><i class="fa-regular fa-thumbs-down unselectable"></i></button>
                     </div>
                 </div>
             </div>
@@ -242,3 +247,5 @@ document.getElementById('loadMoreBtn').addEventListener('click', function() {
         searchInternet(document.getElementById('searchQuery').value);
     }
 });
+
+
