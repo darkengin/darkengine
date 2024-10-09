@@ -22,20 +22,24 @@ function setTheme(themeToSet){
     if(!availableThemes.includes(themeToSet)) return
     window.localStorage.setItem('theme', themeToSet)
     availableThemes.forEach((theme) => {
-        if(theme !== themeToSet && body.classList.contains(theme)) body.classList.remove(theme)
-    })
-    if(!body.classList.contains(themeToSet)) body.classList.add(themeToSet)
+        body.classList.remove(theme);
+    });
+    body.classList.add(themeToSet);
+}
+
+function delectSystemTheme() {
+    if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+    }
+    return 'light';
 }
 
 function loadTheme() {
-    const theme = window.localStorage.getItem('theme')
-    setTheme(theme)
+    const storedTheme = window.localStorage.getItem('theme');
+    const theme = storedTheme || delectSystemTheme();
+    setTheme(theme);
 }
-loadTheme()
-
-
-
-
+loadTheme();
 
 function toggleModal() {
     const modal = document.getElementById('donation-modal');
@@ -52,13 +56,25 @@ let userFeedback = {};
 document.addEventListener('DOMContentLoaded', () => {
     const storedResults = JSON.parse(localStorage.getItem('searchResults'));
     const storedQuery = localStorage.getItem('lastQuery');
-
     if (storedResults && storedQuery) {
         document.getElementById('searchQuery').value = storedQuery;
         allResults = storedResults;
         displayResults(allResults);
     }
 });
+
+let debounceTimer;
+document.getElementById('searchQuery').addEventListener('keyup', function(e){
+    const query = e.target.value.trim();
+    if(debounceTimer) clearTimeout(debounceTimer)
+        debounceTimer = setTimeout(() => {
+            if(query){
+                searchInternet(query);
+            }else{
+                displayResults(allResults);
+            }
+        }, 300)
+    });
 
 document.getElementById('searchEngine').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -82,20 +98,12 @@ async function searchInternet(query) {
         allResults = data.items.map(item => ({ ...item, likes: 0, dislikes: 0 }));
         localStorage.setItem('searchResults', JSON.stringify(allResults));
         localStorage.setItem('lastQuery', query);
-
         const classifiedResults = applyMachineLearning(allResults);
-
         displayResults(classifiedResults);
-
         nextPageToken = data.queries?.nextPage ? data.queries.nextPage[0].startIndex : null;
-
-        if (nextPageToken) {
-            document.getElementById('loadMoreBtn').style.display = 'block';
-        } else {
-            document.getElementById('loadMoreBtn').style.display = 'none';
-        }
     } catch (error) {
         console.log('Error fetching search results:', error);
+        alert('Error fetching results. please try again later.');
     }
 }
 
@@ -109,21 +117,14 @@ function applyMachineLearning(results) {
     });
 }
 
-// Enhanced classification function using binary decision-making
 function classify(result) {
     const quality = result.snippet.length;
     const likes = result.likes;
     const dislikes = result.dislikes;
-
-    // Convert quality, likes, and dislikes into binary-like decision conditions
     let qualityScore = quality > 100 ? 1 : 0;
     let likeScore = likes > dislikes ? 1 : 0;
-    let interactionScore = likes + dislikes > 20 ? 1 : 0; // Check user engagement
-
-    // Binary decision-making based on weighted scores
+    let interactionScore = likes + dislikes > 20 ? 1 : 0; 
     let classificationCode = (qualityScore << 2) | (likeScore << 1) | interactionScore;
-
-    // Use binary-like decisions for more granular classification
     switch (classificationCode) {
         case 0b111:
             return 'High Quality with Strong Engagement';
