@@ -38,6 +38,7 @@
   
 header{
     z-index: 10000;
+    backdrop-filter: blur(10px);
 }
 .center{
     height: auto;
@@ -67,6 +68,7 @@ header{
     align-items: flex-start;
     justify-content: center;
     /* overflow: hidden; */
+    border-radius: 10px;
 }
 #ima{
     width: 50px;
