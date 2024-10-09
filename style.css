@@ -158,7 +158,7 @@ header{
         font-size: 30px;
         display: flex;
         cursor: pointer;
-        color: #fff;
+        color: var(--color-main);
     }
     .center{
         width: 100%;
