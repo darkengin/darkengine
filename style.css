@@ -136,7 +136,7 @@ header{
         height: 100vh;
         width: 100%;
         padding: 100px 100px;
-        background: #0000003b;
+        background: #000000;
         backdrop-filter: blur(100px);
         z-index: 500000;
     }
